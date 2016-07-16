@@ -24,8 +24,8 @@
       <file leaf-file-name="test_add_group.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test_add_group.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+            <state relative-caret-position="289">
+              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
               <folding>
                 <element signature="e#24#82#0" expanded="true" />
               </folding>
@@ -319,6 +319,9 @@
     <history-entry file="py_test_in_test_add_group_py - 2016.07.16 at 22h 09m 24s.xml">
       <configuration name="py.test in test_add_group.py" configurationId="tests" />
     </history-entry>
+    <history-entry file="py_test_in_test_add_group_py - 2016.07.16 at 22h 45m 30s.xml">
+      <configuration name="py.test in test_add_group.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -353,8 +356,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/test_add_group.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="49" column="25" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+        <state relative-caret-position="289">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
           <folding>
             <element signature="e#24#82#0" expanded="true" />
           </folding>
