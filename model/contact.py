@@ -2,9 +2,10 @@
 
 class Contact:
     
-    def __init__(self, firstname, middlename, lastname, nickname, title, company, company_address, telephone_home,
-                 telephone_mobile, telephone_work, telephone_fax, email, email2, email3, homepage, birthday_year,
-                 anniversary, secondary_address, secondary_phone_home, secondary_notes):
+    def __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None,
+                 company_address=None, telephone_home=None, telephone_mobile=None, telephone_work=None,
+                 telephone_fax=None, email=None, email2=None, email3=None, homepage=None, birthday_year=None,
+                 anniversary=None, secondary_address=None, secondary_phone_home=None, secondary_notes=None):
         self.firstname = firstname
         self.middlename = middlename
         self.lastname = lastname
