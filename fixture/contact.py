@@ -1,5 +1,3 @@
-
-
 class ContactHelper:
 
     def __init__(self, app):
@@ -56,8 +54,6 @@ class ContactHelper:
         wd = self.app.wd
         self.select_first_contact()
         # open modification form
-        if not wd.find_element_by_id("6").is_selected():
-            wd.find_element_by_id("6").click()
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
         self.fill_contact_form(contact)
         # submit contact edit
@@ -73,3 +69,7 @@ class ContactHelper:
         # submit deletion
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
+
+    def count(self):
+        wd = self.app.wd
+        return len(wd.find_elements_by_name("selected[]"))
