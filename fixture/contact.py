@@ -58,6 +58,7 @@ class ContactHelper:
         self.fill_contact_form(contact)
         # submit contact edit
         wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
+        self.app.open_home_page()
 
     def select_first_contact(self):
         wd = self.app.wd
@@ -69,6 +70,7 @@ class ContactHelper:
         # submit deletion
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
+        self.app.open_home_page()
 
     def count(self):
         wd = self.app.wd
