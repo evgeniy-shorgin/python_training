@@ -1,3 +1,6 @@
+from model.contact import Contact
+
+
 class ContactHelper:
 
     def __init__(self, app):
@@ -49,6 +52,7 @@ class ContactHelper:
         self.fill_contact_form(contact)
         # submit client creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        self.app.open_home_page()
 
     def modify_first_contact(self, contact):
         wd = self.app.wd
@@ -75,3 +79,20 @@ class ContactHelper:
     def count(self):
         wd = self.app.wd
         return len(wd.find_elements_by_name("selected[]"))
+
+    def get_contact_list(self):
+        wd = self.app.wd
+        contacts = []
+        # get list of contacts, include header of table
+        for element in wd.find_elements_by_css_selector("tr"):
+            # if it is a contact, not header of table
+            if element.get_attribute("name") == "entry":
+                attributes = element.find_elements_by_css_selector("td")
+                ident = attributes[0].get_attribute("value")
+                lastname = attributes[1].text
+                firstname = attributes[2].text
+                company_address = attributes[3].text
+                contacts.append(Contact(firstname=firstname, lastname=lastname, company_address=company_address,
+                                        ident=ident))
+        self.app.open_home_page()
+        return contacts
