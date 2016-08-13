@@ -53,6 +53,8 @@ class ContactHelper:
         # submit client creation
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
         self.app.open_home_page()
+        self.contacts_cache = None
+        return contact
 
     def modify_first_contact(self, contact):
         wd = self.app.wd
@@ -63,6 +65,7 @@ class ContactHelper:
         # submit contact edit
         wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
         self.app.open_home_page()
+        self.contacts_cache = None
 
     def select_first_contact(self):
         wd = self.app.wd
@@ -75,24 +78,28 @@ class ContactHelper:
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
         self.app.open_home_page()
+        self.contacts_cache = None
 
     def count(self):
         wd = self.app.wd
         return len(wd.find_elements_by_name("selected[]"))
 
+    contacts_cache = None
+
     def get_contact_list(self):
-        wd = self.app.wd
-        contacts = []
-        # get list of contacts, include header of table
-        for element in wd.find_elements_by_css_selector("tr"):
-            # if it is a contact, not header of table
-            if element.get_attribute("name") == "entry":
-                attributes = element.find_elements_by_css_selector("td")
-                ident = attributes[0].get_attribute("value")
-                lastname = attributes[1].text
-                firstname = attributes[2].text
-                company_address = attributes[3].text
-                contacts.append(Contact(firstname=firstname, lastname=lastname, company_address=company_address,
-                                        ident=ident))
-        self.app.open_home_page()
-        return contacts
+        if self.contacts_cache is None:
+            wd = self.app.wd
+            self.contacts_cache = []
+            # get list of contacts, include header of table
+            for element in wd.find_elements_by_css_selector("tr"):
+                # if it is a contact, not header of table
+                if element.get_attribute("name") == "entry":
+                    attributes = element.find_elements_by_css_selector("td")
+                    ident = attributes[0].get_attribute("value")
+                    lastname = attributes[1].text
+                    firstname = attributes[2].text
+                    company_address = attributes[3].text
+                    self.contacts_cache.append(Contact(firstname=firstname, lastname=lastname,
+                                                  company_address=company_address, ident=ident))
+            self.app.open_home_page()
+        return list(self.contacts_cache)
