@@ -56,9 +56,12 @@ class ContactHelper:
         self.contacts_cache = None
         return contact
 
-    def modify_first_contact(self, contact):
+    def modify_first_contact(self):
+        self.modify_contact_by_index(0)
+
+    def modify_contact_by_index(self, index, contact):
         wd = self.app.wd
-        self.select_first_contact()
+        self.select_contact_by_index(index)
         # open modification form
         wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
         self.fill_contact_form(contact)
@@ -68,12 +71,18 @@ class ContactHelper:
         self.contacts_cache = None
 
     def select_first_contact(self):
+        self.select_contact_by_index(0)
+
+    def select_contact_by_index(self, index):
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
     def delete_first_contact(self):
+        self.delete_contact_by_index(0)
+
+    def delete_contact_by_index(self, index):
         wd = self.app.wd
-        self.select_first_contact()
+        self.select_contact_by_index(index)
         # submit deletion
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
@@ -95,11 +104,11 @@ class ContactHelper:
                 # if it is a contact, not header of table
                 if element.get_attribute("name") == "entry":
                     attributes = element.find_elements_by_css_selector("td")
-                    ident = attributes[0].get_attribute("value")
+                    ident = attributes[0].find_element_by_name("selected[]").get_attribute("value")
                     lastname = attributes[1].text
                     firstname = attributes[2].text
                     company_address = attributes[3].text
                     self.contacts_cache.append(Contact(firstname=firstname, lastname=lastname,
-                                                  company_address=company_address, ident=ident))
+                                                       company_address=company_address, ident=ident))
             self.app.open_home_page()
         return list(self.contacts_cache)
