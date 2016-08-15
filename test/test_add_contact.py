@@ -14,5 +14,7 @@ def test_add_contact(app):
                                          secondary_notes="secondary_notes"))
     assert len(old_contacts) + 1 == app.contact.count()
     new_contacts = app.contact.get_contact_list()
+    # we don't now id, it is in alphabet order
+    # contact.ident = new_contacts[len(new_contacts)-1].ident
     # old_contacts.append(contact)
-    # assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+    # assert sorted(old_contacts) == sorted(new_contacts)
