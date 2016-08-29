@@ -1,9 +1,12 @@
+from sys import maxsize
+
+
 class Contact:
     
     def __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None,
-                 company_address=None, telephone_home=None, telephone_mobile=None, telephone_work=None,
+                 company_address=None, homephone=None, mobilephone=None, workphone=None,
                  telephone_fax=None, email=None, email2=None, email3=None, homepage=None, birthday_year=None,
-                 anniversary=None, secondary_address=None, secondary_phone_home=None, secondary_notes=None, ident=None):
+                 anniversary=None, secondary_address=None, secondaryphone=None, secondary_notes=None, ident=None):
         self.ident = ident
         self.firstname = firstname
         self.middlename = middlename
@@ -12,9 +15,9 @@ class Contact:
         self.title = title
         self.company = company
         self.company_address = company_address
-        self.telephone_home = telephone_home
-        self.telephone_mobile = telephone_mobile
-        self.telephone_work = telephone_work
+        self.homephone = homephone
+        self.mobilephone = mobilephone
+        self.workphone = workphone
         self.telephone_fax = telephone_fax
         self.email = email
         self.email2 = email2
@@ -23,11 +26,11 @@ class Contact:
         self.birthday_year = birthday_year
         self.anniversary = anniversary
         self.secondary_address = secondary_address
-        self.secondary_phone_home = secondary_phone_home
+        self.secondaryphone = secondaryphone
         self.secondary_notes = secondary_notes
 
     def __eq__(self, other):
-        return self.ident == other.ident and \
+        return (self.ident is None or other.ident is None or self.ident == other.ident) and \
                self.firstname == other.firstname and \
                self.lastname == other.lastname and \
                self.company_address == other.company_address  # and \
@@ -35,9 +38,9 @@ class Contact:
                # self.nickname == other.nickname and \
                # self.title == other.title and \
                # self.company == other.company and \
-               # self.telephone_home == other.telephone_home and \
-               # self.telephone_mobile == other.telephone_mobile and \
-               # self.telephone_work == other.telephone_work and \
+               # self.homephone == other.homephone and \
+               # self.mobilephone == other.mobilephone and \
+               # self.workphone == other.workphone and \
                # self.telephone_fax == other.telephone_fax and \
                # self.email == other.email and \
                # self.email2 == other.email2 and \
@@ -46,11 +49,11 @@ class Contact:
                # self.birthday_year == other.birthday_year and \
                # self.anniversary == other.anniversary and \
                # self.secondary_address == other.secondary_address and \
-               # self.secondary_phone_home == other.secondary_phone_home and \
+               # self.secondaryphone == other.secondaryphone and \
                # self.secondary_notes == other.secondary_notes
 
     def __lt__(self, other):
-        return self.ident < other.ident
+        return self.firstname < other.firstname
 
     def __repr__(self):
         repstr = "{"
@@ -70,12 +73,12 @@ class Contact:
             repstr += "%s|" % self.company
         if self.company_address is not None: 
             repstr += "%s|" % self.company_address
-        if self.telephone_home is not None: 
-            repstr += "%s|" % self.telephone_home
-        if self.telephone_mobile is not None: 
-            repstr += "%s|" % self.telephone_mobile
-        if self.telephone_work is not None: 
-            repstr += "%s|" % self.telephone_work
+        if self.homephone is not None:
+            repstr += "%s|" % self.homephone
+        if self.mobilephone is not None:
+            repstr += "%s|" % self.mobilephone
+        if self.workphone is not None:
+            repstr += "%s|" % self.workphone
         if self.telephone_fax is not None: 
             repstr += "%s|" % self.telephone_fax
         if self.email is not None: 
@@ -92,9 +95,15 @@ class Contact:
             repstr += "%s|" % self.anniversary
         if self.secondary_address is not None: 
             repstr += "%s|" % self.secondary_address
-        if self.secondary_phone_home is not None: 
-            repstr += "%s|" % self.secondary_phone_home
+        if self.secondaryphone is not None:
+            repstr += "%s|" % self.secondaryphone
         if self.secondary_notes is not None: 
             repstr += "%s|" % self.secondary_notes
         repstr = repstr[:-1]
         return repstr + "}"
+
+    def id_or_max(self):
+        if self.ident:
+            return int(self.ident)
+        else:
+            return maxsize

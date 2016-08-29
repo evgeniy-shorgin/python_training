@@ -86,5 +86,5 @@ class GroupHelper:
                 text = element.text
                 ident = element.find_element_by_name("selected[]").get_attribute("value")
                 self.group_cache.append(Group(name=text, ident=ident))
-            self.app.open_home_page()
+        self.app.open_home_page()
         return list(self.group_cache)

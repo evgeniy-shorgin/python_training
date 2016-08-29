@@ -16,9 +16,9 @@ class ContactHelper:
         self.change_field_value("title", contact.title)
         self.change_field_value("company", contact.company)
         self.change_field_value("address", contact.company_address)
-        self.change_field_value("home", contact.telephone_home)
-        self.change_field_value("mobile", contact.telephone_mobile)
-        self.change_field_value("work", contact.telephone_work)
+        self.change_field_value("home", contact.homephone)
+        self.change_field_value("mobile", contact.mobilephone)
+        self.change_field_value("work", contact.workphone)
         self.change_field_value("fax", contact.telephone_fax)
         self.change_field_value("email", contact.email)
         self.change_field_value("email2", contact.email2)
@@ -35,7 +35,7 @@ class ContactHelper:
             wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[3]").click()
         self.change_field_value("ayear", contact.anniversary)
         self.change_field_value("address2", contact.secondary_address)
-        self.change_field_value("phone2", contact.secondary_phone_home)
+        self.change_field_value("phone2", contact.secondaryphone)
         self.change_field_value("notes", contact.secondary_notes)
 
     def change_field_value(self, field_name, text):
@@ -61,21 +61,32 @@ class ContactHelper:
 
     def modify_contact_by_index(self, index, contact):
         wd = self.app.wd
-        self.select_contact_by_index(index)
         # open modification form
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
+        self.open_contact_to_modify_by_index(index)
         self.fill_contact_form(contact)
         # submit contact edit
         wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
         self.app.open_home_page()
         self.contacts_cache = None
 
+    def open_contact_to_modify_by_index(self, index):
+        wd = self.app.wd
+        self.app.open_home_page()
+        selector = 0
+        for row in wd.find_elements_by_css_selector("tr"):
+            # if it is a contact, not header of table
+            if row.get_attribute("name") == "entry":
+                if selector == index:
+                    row.find_elements_by_css_selector("td")[7].click()
+                    return
+                selector += 1
+
     def select_first_contact(self):
         self.select_contact_by_index(0)
 
     def select_contact_by_index(self, index):
         wd = self.app.wd
-        wd.find_element_by_name("selected[]")[index].click()
+        wd.find_elements_by_name("selected[]")[index].click()
 
     def delete_first_contact(self):
         self.delete_contact_by_index(0)
@@ -98,6 +109,7 @@ class ContactHelper:
     def get_contact_list(self):
         if self.contacts_cache is None:
             wd = self.app.wd
+            self.app.open_home_page()
             self.contacts_cache = []
             # get list of contacts, include header of table
             for element in wd.find_elements_by_css_selector("tr"):
@@ -110,5 +122,16 @@ class ContactHelper:
                     company_address = attributes[3].text
                     self.contacts_cache.append(Contact(firstname=firstname, lastname=lastname,
                                                        company_address=company_address, ident=ident))
-            self.app.open_home_page()
+        self.app.open_home_page()
         return list(self.contacts_cache)
+
+            # In lesson. Does't work
+            # for element in wd.find_elements_by_name("entry"):
+            #     attributes = element.find_elements_by_tag_name("td")
+            #     ident = attributes[0].find_elements_by_tag_name("input").get_attribute("value")
+            #     lastname = attributes[1].text
+            #     firstname = attributes[2].text
+            #     company_address = attributes[3].text
+            #     self.contacts_cache.append(Contact(firstname=firstname, lastname=lastname,
+            #                                        company_address=company_address, ident=ident))
+            # self.app.open_home_page()

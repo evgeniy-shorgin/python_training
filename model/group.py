@@ -7,13 +7,13 @@ class Group:
         self.footer = footer
 
     def __eq__(self, other):
-        return self.ident == other.ident and \
+        return (self.ident is None or other.ident is None or self.ident == other.ident) and \
                self.name == other.name  # and \
                # self.header == other.header and \
                # self.footer == other.footer
 
     def __lt__(self, other):
-        return self.ident < other.ident
+        return self.name < other.name
 
     def __repr__(self):
         repstr = "{"
