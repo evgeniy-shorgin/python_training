@@ -6,7 +6,8 @@ class Contact:
     def __init__(self, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None,
                  company_address=None, homephone=None, mobilephone=None, workphone=None,
                  telephone_fax=None, email=None, email2=None, email3=None, homepage=None, birthday_year=None,
-                 anniversary=None, secondary_address=None, secondaryphone=None, secondary_notes=None, ident=None):
+                 anniversary=None, secondary_address=None, secondaryphone=None, secondary_notes=None,
+                 all_phones_from_homepage=None, all_emails_from_homepage=None, ident=None):
         self.ident = ident
         self.firstname = firstname
         self.middlename = middlename
@@ -28,6 +29,8 @@ class Contact:
         self.secondary_address = secondary_address
         self.secondaryphone = secondaryphone
         self.secondary_notes = secondary_notes
+        self.all_phones_from_homepage = all_phones_from_homepage
+        self.all_emails_from_homepage = all_emails_from_homepage
 
     def __eq__(self, other):
         return (self.ident is None or other.ident is None or self.ident == other.ident) and \
@@ -53,7 +56,7 @@ class Contact:
                # self.secondary_notes == other.secondary_notes
 
     def __lt__(self, other):
-        return self.firstname < other.firstname
+        return self.ident < other.ident
 
     def __repr__(self):
         repstr = "{"

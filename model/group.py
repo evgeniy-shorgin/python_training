@@ -13,7 +13,7 @@ class Group:
                # self.footer == other.footer
 
     def __lt__(self, other):
-        return self.name < other.name
+        return self.ident < other.ident
 
     def __repr__(self):
         repstr = "{"
