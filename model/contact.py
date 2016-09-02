@@ -60,48 +60,48 @@ class Contact:
 
     def __repr__(self):
         repstr = "{"
-        if self.ident is not None: 
-            repstr += "%s|" % self.ident
+        # if self.ident is not None:
+        #     repstr += "%s|" % self.ident
         if self.firstname is not None: 
             repstr += "%s|" % self.firstname
         if self.middlename is not None: 
             repstr += "%s|" % self.middlename
         if self.lastname is not None: 
             repstr += "%s|" % self.lastname
-        if self.nickname is not None: 
-            repstr += "%s|" % self.nickname
-        if self.title is not None: 
-            repstr += "%s|" % self.title
-        if self.company is not None: 
-            repstr += "%s|" % self.company
-        if self.company_address is not None: 
-            repstr += "%s|" % self.company_address
-        if self.homephone is not None:
-            repstr += "%s|" % self.homephone
-        if self.mobilephone is not None:
-            repstr += "%s|" % self.mobilephone
-        if self.workphone is not None:
-            repstr += "%s|" % self.workphone
-        if self.telephone_fax is not None: 
-            repstr += "%s|" % self.telephone_fax
-        if self.email is not None: 
-            repstr += "%s|" % self.email
-        if self.email2 is not None: 
-            repstr += "%s|" % self.email2
-        if self.email3 is not None: 
-            repstr += "%s|" % self.email3
-        if self.homepage is not None: 
-            repstr += "%s|" % self.homepage
-        if self.birthday_year is not None: 
-            repstr += "%s|" % self.birthday_year
-        if self.anniversary is not None: 
-            repstr += "%s|" % self.anniversary
-        if self.secondary_address is not None: 
-            repstr += "%s|" % self.secondary_address
-        if self.secondaryphone is not None:
-            repstr += "%s|" % self.secondaryphone
-        if self.secondary_notes is not None: 
-            repstr += "%s|" % self.secondary_notes
+        # if self.nickname is not None:
+        #     repstr += "%s|" % self.nickname
+        # if self.title is not None:
+        #     repstr += "%s|" % self.title
+        # if self.company is not None:
+        #     repstr += "%s|" % self.company
+        # if self.company_address is not None:
+        #     repstr += "%s|" % self.company_address
+        # if self.homephone is not None:
+        #     repstr += "%s|" % self.homephone
+        # if self.mobilephone is not None:
+        #     repstr += "%s|" % self.mobilephone
+        # if self.workphone is not None:
+        #     repstr += "%s|" % self.workphone
+        # if self.telephone_fax is not None:
+        #     repstr += "%s|" % self.telephone_fax
+        # if self.email is not None:
+        #     repstr += "%s|" % self.email
+        # if self.email2 is not None:
+        #     repstr += "%s|" % self.email2
+        # if self.email3 is not None:
+        #     repstr += "%s|" % self.email3
+        # if self.homepage is not None:
+        #     repstr += "%s|" % self.homepage
+        # if self.birthday_year is not None:
+        #     repstr += "%s|" % self.birthday_year
+        # if self.anniversary is not None:
+        #     repstr += "%s|" % self.anniversary
+        # if self.secondary_address is not None:
+        #     repstr += "%s|" % self.secondary_address
+        # if self.secondaryphone is not None:
+        #     repstr += "%s|" % self.secondaryphone
+        # if self.secondary_notes is not None:
+        #     repstr += "%s|" % self.secondary_notes
         repstr = repstr[:-1]
         return repstr + "}"
 
