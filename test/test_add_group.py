@@ -1,7 +1,7 @@
 
 
-def test_add_group(app, data_groups):
-    a_group = data_groups
+def test_add_group(app, json_groups):
+    a_group = json_groups
     old_groups = app.group.get_group_list()
     group = app.group.create(a_group)
     assert len(old_groups) + 1 == app.group.count()

@@ -1,7 +1,7 @@
 
 
-def test_add_contact(app, data_contacts):
-    a_contact = data_contacts
+def test_add_contact(app, json_contacts):
+    a_contact = json_contacts
     old_contacts = app.contact.get_contact_list()
     contact = app.contact.create(a_contact)
     assert len(old_contacts) + 1 == app.contact.count()
