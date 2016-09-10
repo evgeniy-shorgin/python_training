@@ -38,8 +38,8 @@ testdata = [Contact(firstname="", middlename="", lastname="", nickname="", title
             mobilephone=random_string("mobilephone", 10), workphone=random_string("workphone", 10),
             telephone_fax=random_string("telephone_fax", 10), email=random_string("email", 10),
             email2=random_string("email2", 10), email3=random_string("email3", 10),
-            homepage=random_string("homepage", 10), birthday_year=random_string("birthday_year", 10),
-            anniversary=random_string("anniversary", 10), secondary_address=random_string("secondary_address", 10),
+            homepage=random_string("homepage", 10), birthday_year=random_string("", 4),
+            anniversary=random_string("", 4), secondary_address=random_string("secondary_address", 10),
             secondaryphone=random_string("secondaryphone", 10), secondary_notes=random_string("secondary_notes", 10))
     for i in range(n)
 ]

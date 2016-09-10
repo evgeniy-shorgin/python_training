@@ -56,12 +56,18 @@ class Contact:
                # self.secondary_notes == other.secondary_notes
 
     def __lt__(self, other):
-        return self.ident < other.ident
+        # Sort None elements too
+        if self.ident is None:
+            return False
+        elif other.ident is None:
+            return True
+        else:
+            return self.ident < other.ident
 
     def __repr__(self):
         repstr = "{"
-        # if self.ident is not None:
-        #     repstr += "%s|" % self.ident
+        if self.ident is not None:
+            repstr += "%s|" % self.ident
         if self.firstname is not None: 
             repstr += "%s|" % self.firstname
         if self.middlename is not None: 

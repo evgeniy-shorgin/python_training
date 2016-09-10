@@ -13,7 +13,13 @@ class Group:
                # self.footer == other.footer
 
     def __lt__(self, other):
-        return self.ident < other.ident
+        # Sort None elements too
+        if self.ident is None:
+            return False
+        elif other.ident is None:
+            return True
+        else:
+            return self.ident < other.ident
 
     def __repr__(self):
         repstr = "{"
