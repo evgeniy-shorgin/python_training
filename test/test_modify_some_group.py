@@ -2,7 +2,7 @@ from model.group import Group
 import random
 
 
-def test_modify_some_group_name(app, db, json_groups):
+def test_modify_some_group_name(app, db, json_groups, check_ui):
     group = json_groups
     if len(db.get_group_list()) == 0:
         app.group.create(Group(name="test"))
@@ -12,3 +12,5 @@ def test_modify_some_group_name(app, db, json_groups):
     new_groups = db.get_group_list()
     old_groups[old_groups.index(group_to_modify)] = group
     assert old_groups == new_groups
+    if check_ui:
+        assert sorted(new_groups) == sorted(app.group.get_group_list())
