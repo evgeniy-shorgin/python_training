@@ -31,7 +31,7 @@ class DbFixture:
         try:
             cursor.execute("SELECT id, firstname, middlename, lastname, nickname, title, company, address, "
                            "home, mobile, work, fax, email, email2, email3, homepage, byear, ayear, address2, "
-                           "phone2, notes FROM addressbook WHERE deprecated=0")
+                           "phone2, notes FROM addressbook WHERE deprecated='0000-00-00 00:00:00'")
             for row in cursor:
                 (ident, firstname, middlename, lastname, nickname, title, company, company_address,
                  homephone, mobilephone, workphone, telephone_fax, email, email2, email3,
